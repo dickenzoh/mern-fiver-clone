@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import authRoute from "./routes/auth.routes.js";
 
 const app = express();
 dotenv.config();
@@ -11,9 +12,7 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-app.listen(8800, () => {
-  console.log("Hello from fiver clone API art by dickenzoh");
-});
+app.use("/api/auth", authRoute);
 
 const PORT = process.env.PORT || 3005;
 
