@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
+  console.log("registering");
   try {
     const hash = bcrypt.hashSync(req.body.password, 5);
     const newUser = new User({
@@ -18,6 +19,8 @@ export const register = async (req, res, next) => {
   }
 };
 export const login = async (req, res, next) => {
+  console.log("logiing");
+
   try {
     const user = await User.findOne({ username: req.body.username });
 
