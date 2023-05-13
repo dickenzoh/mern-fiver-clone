@@ -7,6 +7,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import Register from "./pages/register/Register";
+import Login from "./pages/login/Login";
 
 function App() {
   const queryClient = new QueryClient();
@@ -27,7 +29,16 @@ function App() {
     {
       path: "/",
       element: <Layout />,
-      
+      children: [
+        {
+          path: "/register",
+          element: <Register />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+      ],
     },
   ]);
 

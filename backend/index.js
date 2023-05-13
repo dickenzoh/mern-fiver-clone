@@ -1,17 +1,21 @@
 import express from "express";
-import bodyParser from "body-parser";
-import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoute from "./routes/auth.routes.js";
 import userRoute from "./routes/user.routes.js";
+import bodyParser from "body-parser";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
 const app = express();
 dotenv.config();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
+
+app.use(cors({ origin: "http://localhost:5174", credentials: true }));
+app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
